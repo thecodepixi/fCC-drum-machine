@@ -3,21 +3,17 @@ import Instrument from '../components/instrument'
 
 class DrumKitContainer extends React.Component {
 
-  renderInstruments = () => {
-    let instruments = []
-
-    for( let i = 0; i < 6; i++) {
-      instruments.push( <Instrument /> )
-    }
-
-    return instruments 
+  state {
+    audioFiles: 
   }
-  
+
   render(){
     return(
-      <div>
-        <h1>I am the container...</h1>
-        <h2>Here are some instruments:</h2>
+      <div id="drum-machine">
+        <h1>fCC Drum Machine</h1>
+        <div id="display">
+
+        </div>
         { this.renderInstruments() }
       </div>
 
