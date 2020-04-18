@@ -26,14 +26,14 @@ class Instrument extends React.Component {
     this.showClick()
   }
 
-  handKeyDown = e => {
+  handleKeyDown = e => {
     if (e.key === this.props.button.toLowerCase()) {
       this.playAudio()
       }
   }
 
   componentDidMount() {
-    document.addEventListener("keydown", this.handKeyDown)
+    document.addEventListener("keydown", this.handleKeyDown)
   }
 
   render() {
