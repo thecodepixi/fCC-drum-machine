@@ -24,17 +24,28 @@ class DrumKitContainer extends React.Component {
       tambourine: Tambourine,
       vibraslap: VibraSlap,
       woodblock: Woodblock
-    }
+    },
+    currentKey: ''
   }
 
   renderInstruments = () => {
     let instrumentComponents = []
+    let keys = ['Q','W','E','A','S','D','Z','X','C']
+    let i = 0
     for (let instrument in this.state.instruments) {
       instrumentComponents.push(
-        <Instrument name={instrument} audioFile={this.state.instruments[instrument]} />
+        <Instrument instrument={instrument} audioFile={this.state.instruments[instrument]} button={keys[i]} key={instrument} updateDisplay={this.updateDisplay}/>
       )
+      i++
     }
     return instrumentComponents
+  }
+
+  updateDisplay = key => {
+    this.setState(prevState => ({
+      ...prevState,
+      currentKey: key
+    }))
   }
 
   render(){
@@ -42,6 +53,7 @@ class DrumKitContainer extends React.Component {
       <div id="drum-machine">
         <h1>fCC Drum Machine</h1>
         <div id="display">
+          <h3>{this.state.currentKey}</h3>
         {this.renderInstruments()}
         </div>
 
