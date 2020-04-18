@@ -11,9 +11,13 @@ class Instrument extends React.Component {
   handKeyDown = e => {
     if (e.key === this.props.button.toLowerCase()) {
       let audio = document.querySelector(`#${this.props.button}`)
-      audio.currentTime = 0
-      audio.play()
-      this.props.updateDisplay(this.props.button)
+      let audioPlayback = audio.play() 
+      if (audioPlayback !== undefined) {
+        audioPlayback.then( _ => {
+          this.props.updateDisplay(this.props.button)
+          audio.currentTime = 0
+        }).catch( err => console.error(err))
+      }
     }
   }
 
