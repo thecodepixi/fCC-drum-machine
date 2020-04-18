@@ -2,10 +2,17 @@ import React from 'react';
 
 class Instrument extends React.Component {
 
+  showClick = () => {
+    let button = document.querySelector(`#${this.props.instrument}`)
+    button.classList.add("playing")
+    setTimeout(() => button.classList.remove("playing"), 250)
+  }
+
   handleClick = () => {
     let audio = document.querySelector(`#${this.props.button}`)
     audio.play()
     this.props.updateDisplay(this.props.button)
+    this.showClick()
   }
 
   handKeyDown = e => {
@@ -15,6 +22,7 @@ class Instrument extends React.Component {
       if (audioPlayback !== undefined) {
         audioPlayback.then( _ => {
           this.props.updateDisplay(this.props.button)
+          this.showClick()
           audio.currentTime = 0
         }).catch( err => console.error(err))
       }

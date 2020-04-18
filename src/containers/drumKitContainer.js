@@ -54,9 +54,10 @@ class DrumKitContainer extends React.Component {
         <h1>fCC Drum Machine</h1>
         <div id="display">
           <h3>{this.state.currentKey}</h3>
-        {this.renderInstruments()}
         </div>
-
+        <div id="button-container">
+          {this.renderInstruments()}
+        </div>
       </div>
     )
   }
