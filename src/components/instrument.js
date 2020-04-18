@@ -8,16 +8,8 @@ class Instrument extends React.Component {
     setTimeout(() => button.classList.remove("playing"), 250)
   }
 
-  handleClick = () => {
+  playAudio = () => {
     let audio = document.querySelector(`#${this.props.button}`)
-    audio.play()
-    this.props.updateDisplay(this.props.button)
-    this.showClick()
-  }
-
-  handKeyDown = e => {
-    if (e.key === this.props.button.toLowerCase()) {
-      let audio = document.querySelector(`#${this.props.button}`)
       let audioPlayback = audio.play() 
       if (audioPlayback !== undefined) {
         audioPlayback.then( _ => {
@@ -26,7 +18,18 @@ class Instrument extends React.Component {
           audio.currentTime = 0
         }).catch( err => console.error(err))
       }
-    }
+  }
+
+  handleClick = () => {
+    this.playAudio()
+    this.props.updateDisplay(this.props.button)
+    this.showClick()
+  }
+
+  handKeyDown = e => {
+    if (e.key === this.props.button.toLowerCase()) {
+      this.playAudio()
+      }
   }
 
   componentDidMount() {
